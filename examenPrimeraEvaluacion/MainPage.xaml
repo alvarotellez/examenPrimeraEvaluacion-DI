@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="examenPrimeraEvaluacion.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:examenPrimeraEvaluacion"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:examenPrimeraEvaluacion.ViewModel"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <vm:MainPageVM></vm:MainPageVM>
+    </Page.DataContext>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <RelativePanel Grid.Row="0">
+            <AppBarButton Icon="Refresh" Label="Volver a jugar" RelativePanel.AlignLeftWithPanel="True" Click="volverAJugar"/>
+            <TextBlock Name="time" Text="{Binding textoreloj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </RelativePanel>
+
+        <GridView Grid.Row="1" ItemsSource="{Binding lista, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding esClickeable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding uri}" MaxWidth="450" MaxHeight="200"/>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Grid>
+</Page>
+
